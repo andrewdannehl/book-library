@@ -1,5 +1,3 @@
-let myLibrary = [];
-
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -13,13 +11,18 @@ function Book(title, author, pages, read) {
     }
 }
 
-//print library to page
+const myLibrary = [];
 const bookDisplay = document.getElementById("book-display");
+const submit = document.querySelector('.submit');
+const addBook = document.getElementById("addBook");
+//print library to page
+
 
 function printLibrary() {
     let i = 0;
+    bookDisplay.innerHTML = '';
 
-    myLibrary.forEach((Book) => {
+    myLibrary.forEach((Book, index) => {
         const listItem = document.createElement("li");
         const container = document.createElement("div");
         const div = document.createElement("div");
@@ -38,9 +41,8 @@ function printLibrary() {
         container.appendChild(div);
         container.appendChild(remove);
         i++;
-    })
+    });
 }
-
 //testing stuff
 //Working OK - good to delete
 //const theHobbit = new Book('The Hobbit', 'Tolkein', '356');
@@ -50,8 +52,7 @@ function printLibrary() {
 //printLibrary();
 
 
-const submit = document.querySelector('.submit');
-const addBook = document.getElementById("addBook");
+
 
     //call this when submit is pressed.
 submit.addEventListener("click", (addBookToLibrary) => {
@@ -62,20 +63,18 @@ submit.addEventListener("click", (addBookToLibrary) => {
     const read = document.getElementById('read').value;
     const newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
-    console.log(myLibrary.length);
     printLibrary();
+    //form.reset();
     closeModal();
 });
 
 
-const remove = document.querySelectorAll('li button');
-remove.forEach((element) => {
-    element.addEventListener("click", (event) => {
-        console.log("Button Clicked: ", element.id);
-        element.parentElement.remove();
-        delete myLibrary[element.id];
-    });
-    console.log(element.textContent);
+bookDisplay.addEventListener('click', (event) => {
+    if (event.target.classList.contains('remove')) {
+        const index = event.target.id;
+        myLibrary.splice(index, 1);
+        printLibrary();
+    }
 });
 
 
