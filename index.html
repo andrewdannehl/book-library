@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="container">
+    <div class="header">
+
+    </div>
+    <div class="main">
+        <div>
+            <div class="library-header"><b>Your Library</b></div>
+            <ol id="book-display">
+                <li><div class="container"><div>Book Details</div><button class="remove">X</button></li>
+            </ol>
+        </div>
+
+        <button class="btn btn-open">Add Book</button>
+        <div class="modal hidden">
+            <div class="flex">
+                <h2>Add Book to Library</h2>
+                <button class="btn-close">X</button>
+            </div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates aspernatur in, aperiam mollitia dolores iste laborum libero fuga asperiores voluptas rerum quidem. Ducimus pariatur culpa sequi, quod architecto enim natus?
+            <form id="addBook" class="form-container">
+                <input type="text" id="title">
+                <label>Title</label>
+                <input type="text" id="author">
+                <label>Author</label>
+                <input type="text" id="pages">
+                <label># Of Pages</label>
+                <!-- change to radio button with Y/N Read?-->
+                <input type="text" id="read">
+                <label>Yes/No Have you read this book?</label>
+                <button class="btn submit">Submit</button>
+            </form>
+            
+        </div>
+        <div class="overlay hidden">
+        </div>
+    </div>
+    <div class="footer">
+        Generic Footer Text
+    </div>
+</body>
+</html>
