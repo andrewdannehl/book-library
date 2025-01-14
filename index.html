@@ -7,16 +7,25 @@
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="container">
+<body>
     <div class="header">
 
     </div>
     <div class="main">
-        <div>
+        <div id="library">
             <div class="library-header"><b>Your Library</b></div>
-            <ol id="book-display">
-                <li><div class="container"><div>Book Details</div><button class="remove">X</button></li>
-            </ol>
+            <div class="container">
+                <div id="book-header" class="flex-container">
+                        <div class="title">Title</div>
+                        <div class="author">Author</div>
+                        <div class="pages"># Of Pages</div>
+                        <div class="read">Read? (Y/N)</div>
+                        <div>Remove</div>
+                </div>
+                <div id="book-list" class="container">
+
+                </div>
+            </div>
         </div>
 
         <button class="btn btn-open">Add Book</button>
@@ -27,15 +36,16 @@
             </div>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates aspernatur in, aperiam mollitia dolores iste laborum libero fuga asperiores voluptas rerum quidem. Ducimus pariatur culpa sequi, quod architecto enim natus?
             <form id="addBook" class="form-container">
-                <input type="text" id="title">
                 <label>Title</label>
-                <input type="text" id="author">
+                <input type="text" id="title">
                 <label>Author</label>
-                <input type="text" id="pages">
+                <input type="text" id="author">
                 <label># Of Pages</label>
-                <!-- change to radio button with Y/N Read?-->
-                <input type="text" id="read">
-                <label>Yes/No Have you read this book?</label>
+                <input type="text" id="pages">
+                <div class="form-bottom">
+                    <label>Read?</label>
+                    <input type="checkbox" class="read">
+                </div>
                 <button class="btn submit">Submit</button>
             </form>
             

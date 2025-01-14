@@ -6,77 +6,77 @@ function Book(title, author, pages, read) {
 
     this.info = function() {
         let string = 0;
-        string = this.title + " by " + this.author + ", " + this.pages + " pages.";
+        string = this.title + " by " + this.author + ", " + this.pages + " pages," + this.read + ".";
         return string;
     }
 }
 
-const myLibrary = [];
-const bookDisplay = document.getElementById("book-display");
+const libraryCollection = [];
+const bookList = document.getElementById("book-list");
 const submit = document.querySelector('.submit');
 const addBook = document.getElementById("addBook");
+
 //print library to page
-
-
 function printLibrary() {
     let i = 0;
-    bookDisplay.innerHTML = '';
+    bookList.innerHTML = ''
 
-    myLibrary.forEach((Book, index) => {
-        const listItem = document.createElement("li");
-        const container = document.createElement("div");
-        const div = document.createElement("div");
+    libraryCollection.forEach((Book, index) => {
+        //create elements
+        const row = document.createElement("div");
+        const title = document.createElement("div");
+        const author = document.createElement("div");
+        const pages = document.createElement("div");
+        const read = document.createElement("div");
         const remove = document.createElement("button");
-        listItem.classList.add(i);
-        container.classList.add(i, "container");
-        div.classList.add(i);
+        //add classes for styling
+        row.classList.add(i, "flex-container");
+        title.classList.add("title");
+        author.classList.add("author");
+        pages.classList.add("pages");
+        read.classList.add("read");
         remove.classList.add("remove");
         remove.id = i;
-        //un-needed now?
-        div.textContent = Book.info();
+
+        title.textContent = `${Book.title}`;
+        author.textContent = `${Book.author}`;
+        pages.textContent = `${Book.pages}`;
+        read.textContent = `${Book.read}`;
         remove.textContent = "X";
-        console.log(Book.info());
-        bookDisplay.appendChild(listItem);
-        listItem.appendChild(container);
-        container.appendChild(div);
-        container.appendChild(remove);
+        //console.log(Book.info());
+
+        bookList.appendChild(row);
+        row.appendChild(title);
+        row.appendChild(author);
+        row.appendChild(pages);
+        row.appendChild(read);
+        row.appendChild(remove);
         i++;
     });
 }
-//testing stuff
-//Working OK - good to delete
-//const theHobbit = new Book('The Hobbit', 'Tolkein', '356');
-//const MASH = new Book('M*A*S*H', 'Richad Hooker', '219');
-//const achilles = new Book('The Song of Achilles', 'Madeline Miller', '369');
-//myLibrary = [achilles, theHobbit, MASH];
-//printLibrary();
 
-
-
-
-    //call this when submit is pressed.
+//event listener for adding a book to the library
 submit.addEventListener("click", (addBookToLibrary) => {
     addBookToLibrary.preventDefault();
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
-    const read = document.getElementById('read').value;
+    const read = document.getElementsByClassName('.read').checked ? 'Not Read' : 'Read';
     const newBook = new Book(title, author, pages, read);
-    myLibrary.push(newBook);
+    libraryCollection.push(newBook);
     printLibrary();
     //form.reset();
     closeModal();
 });
 
-
-bookDisplay.addEventListener('click', (event) => {
+//event listener for removing a book from the library
+bookList.addEventListener('click', (event) => {
     if (event.target.classList.contains('remove')) {
         const index = event.target.id;
-        myLibrary.splice(index, 1);
+        libraryCollection.splice(index, 1);
         printLibrary();
     }
 });
-
 
 //modal functionality
 const modal = document.querySelector('.modal');
@@ -96,5 +96,3 @@ const closeModal = function() {
 
 openModalBtn.addEventListener("click", openModal);
 closeModalBtn.addEventListener("click", closeModal);
-//end modal stuff
-
